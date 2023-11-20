@@ -12,6 +12,19 @@
 
 #include "printf.h"
 
+t_list	*ft_lstnew(char *str, int size)
+{
+	t_list	*list;
+
+	list = malloc(sizeof(t_list));
+	if (!list)
+		return (NULL);
+	list->content = str;
+	list->size = size;
+	list->next = NULL;
+	return (list);
+}
+
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
 	t_list	*last;
@@ -26,3 +39,61 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 		last = last->next;
 	last->next = new;
 }
+ void	ft_free_list(t_list **list)
+{
+	t_list	*head;
+	t_list	*temp;
+
+	head = *list;
+	while (head)
+	{
+		temp = head;
+		head = head->next;
+		free(temp->content);
+		free(temp);
+	}
+}
+char	*ft_strcat(char *dest, char *src)
+{
+	int	len;
+	int	i;
+
+	i = 0;
+	len = 0;
+	while (dest[len])
+		len++;
+	while (src[i])
+	{
+		dest[len] = src[i];
+		len++;
+		i++;
+	}
+	dest[len] = '\0';
+	return (dest);
+}
+char *ft_list_to_tab(t_list **list)
+{
+	t_list *head;
+	char *tab;
+	int	totalsize;
+
+	totalsize = 0;
+	head = *list;
+	while (head)
+	{
+		totalsize = totalsize + head->size;
+		head = head->next;
+	}
+	tab = malloc((totalsize + 1)* sizeof(char));
+	if (!tab)
+		return (NULL);
+	head = *list;
+	while (head)
+	{
+		tab = ft_strcat(tab, head->content);
+		head = head->next;
+	}
+	ft_free_list(*list);
+	return (tab);
+}
+

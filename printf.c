@@ -12,17 +12,17 @@
 
 #include "printf.h"
 
-t_list	*ft_lstnew(char *str, int size)
+void	ft_write_tab(char *tab)
 {
-	t_list	*list;
+	int	i;
 
-	list = malloc(sizeof(t_list));
-	if (!list)
-		return (NULL);
-	list->content = str;
-	list->size = size;
-	list->next = NULL;
-	return (list);
+	i = 0;
+	while (tab[i])
+	{
+		write(1, &tab[i], 1);
+		i++;
+	}
+	free(tab);
 }
 int	ft_stock_char(char c, t_list **list, int *error)
 {
@@ -32,7 +32,7 @@ int	ft_stock_char(char c, t_list **list, int *error)
 
 	tab = malloc(2 * sizeof(char));
 	if(!tab)
-		return (NULL);
+		return (error);
 	size = 1;
 	tab[0] = c;
 	tab[1] = '\0';
@@ -50,7 +50,7 @@ int	ft_search_arg(char c,t_list **list, va_list arg, int *error)
 	else if (c == 's')
 		size = ft_stock_string(va_arg(arg, char *), list, error);
 	else if (c == 'p')
-		size = ft_p(va_arg(arg, void *), list, error);
+		size = ft_p(va_arg(arg, void *), list, error, 10);
 	else if (c == 'd' || c == 'i')
 		size = ft_itoa(va_arg(arg, void *), list, error, 10);
 	else if (c == 'u')
