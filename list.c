@@ -93,7 +93,7 @@ char *ft_list_to_tab(t_list **list)
 		tab = ft_strcat(tab, head->content);
 		head = head->next;
 	}
-	ft_free_list(*list);
+	ft_free_list(list);
 	return (tab);
 }
 

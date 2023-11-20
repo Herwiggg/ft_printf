@@ -12,6 +12,16 @@
 
 #include "printf.h"
 
+int	ft_strlen(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
 int	ft_count(int n, int base)
 {
 	int	count;
@@ -35,7 +45,7 @@ int	ft_count(int n, int base)
 	return (count);
 }
 
-int	*ft_itoa(int n, t_list **list, int *error, int base)
+int	ft_itoa(int n, t_list **list, int *error, int base)
 {
 	char				*result;
 	int					count;
@@ -48,7 +58,7 @@ int	*ft_itoa(int n, t_list **list, int *error, int base)
 	i = count;
 	result = malloc ((count + 1) * sizeof(char));
 	if (!result)
-		return (NULL);
+		return (*error);
 	result[count--] = '\0';
 	if (nb == 0)
 		result[0] = '0';
@@ -94,7 +104,7 @@ int	ft_itoa_maj(int n, t_list **list, int *error, int base)
 	i = count;
 	result = malloc ((count + 1) * sizeof(char));
 	if (!result)
-		return (NULL);
+		return (*error);
 	result[count--] = '\0';
 	if (nb == 0)
 		result[0] = '0';
@@ -113,5 +123,4 @@ int	ft_itoa_maj(int n, t_list **list, int *error, int base)
 	ft_lstadd_back(list, new_case);
 	return (i);
 }
-
 

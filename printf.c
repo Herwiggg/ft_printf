@@ -32,7 +32,7 @@ int	ft_stock_char(char c, t_list **list, int *error)
 
 	tab = malloc(2 * sizeof(char));
 	if(!tab)
-		return (error);
+		return (*error);
 	size = 1;
 	tab[0] = c;
 	tab[1] = '\0';
@@ -50,9 +50,9 @@ int	ft_search_arg(char c,t_list **list, va_list arg, int *error)
 	else if (c == 's')
 		size = ft_stock_string(va_arg(arg, char *), list, error);
 	else if (c == 'p')
-		size = ft_p(va_arg(arg, void *), list, error, 10);
+		size = ft_p(va_arg(arg, int), list, error, 10);
 	else if (c == 'd' || c == 'i')
-		size = ft_itoa(va_arg(arg, void *), list, error, 10);
+		size = ft_itoa(va_arg(arg, int), list, error, 10);
 	else if (c == 'u')
 		size = ft_u(va_arg(arg, unsigned int), list, error, 10);
 	else if (c == 'x')
@@ -60,7 +60,7 @@ int	ft_search_arg(char c,t_list **list, va_list arg, int *error)
 	else if (c == 'X')
 		size = ft_itoa_maj(va_arg(arg, unsigned int), list, error, 16);
 	else if (c == '%')
-		size = ft_c(c, list, error);
+		size = ft_c('%', list, error);
 	return (size);
 
 
@@ -88,9 +88,29 @@ int	ft_prog_printf(const char *str, t_list **list, va_list arg, int *error)
 
 int	ft_printf(const char *str, ...)
 {
-	int		i;
+	int size;
 	va_list	va;
+	int		error;
+	int	i;
+	char *tab;
+	t_list *list;
 
+	list = NULL;
+	error = -1;
 	va_start(va, str);
-	
+	size = ft_prog_printf(str, &list, va, &error);
+	va_end(va);
+	tab = ft_list_to_tab(&list);
+	i = ft_strlen(tab);
+	if (size == i)
+		{
+			ft_write_tab(tab);
+			return (i);
+		}
+		return(-1);
+}
+int main ()
+{
+	int i = 1;
+	ft_printf("test %i", i);
 }

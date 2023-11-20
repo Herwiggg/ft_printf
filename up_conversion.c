@@ -12,7 +12,7 @@
 
 #include "printf.h"
 
-int	*ft_u(unsigned n, t_list **list, int *error, int base)
+int	ft_u(unsigned n, t_list **list, int *error, int base)
 {
 	char				*result;
 	int					count;
@@ -25,7 +25,7 @@ int	*ft_u(unsigned n, t_list **list, int *error, int base)
 	i = count;
 	result = malloc ((count + 1) * sizeof(char));
 	if (!result)
-		return (error);
+		return (*error);
 	result[count--] = '\0';
 	if (nb == 0)
 		result[0] = '0';
@@ -39,7 +39,7 @@ int	*ft_u(unsigned n, t_list **list, int *error, int base)
 	return (i);
 }
 
-int	*ft_p(unsigned n, t_list **list, int *error, int base)
+int	ft_p(unsigned n, t_list **list, int *error, int base)
 {
 	char				*result;
 	int					count;
@@ -52,7 +52,7 @@ int	*ft_p(unsigned n, t_list **list, int *error, int base)
 	i = count + 2;
 	result = malloc ((count + 3) * sizeof(char));
 	if (!result)
-		return (error);
+		return (*error);
 	result[count--] = '\0';
 	while (nb > 2)
 	{

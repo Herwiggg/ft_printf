@@ -12,7 +12,7 @@
 
 #include "printf.h"
 
-int	*ft_stock_string(char *str, t_list **list, int *error)
+int	ft_stock_string(char *str, t_list **list, int *error)
 {
 	int		i;
 	char	*tab;
@@ -23,7 +23,7 @@ int	*ft_stock_string(char *str, t_list **list, int *error)
 	i = 0;
 	tab = malloc((ft_strlen(str) + 1) * sizeof(char));
 	if (!tab)
-		return (NULL);
+		return (*error);
 	while (str[i])
 	{
 		tab[i] = str[i];
@@ -35,7 +35,7 @@ int	*ft_stock_string(char *str, t_list **list, int *error)
 	return (ft_strlen(str));
 }
 
-int	*ft_c(char c, t_list **list, int *error)
+int	ft_c(char c, t_list **list, int *error)
 {
 	char	*tab;
 	int		size;
@@ -43,7 +43,7 @@ int	*ft_c(char c, t_list **list, int *error)
 
 	tab = malloc(2 * sizeof(char));
 	if (!tab)
-		return (NULL);
+		return (*error);
 	tab[0] = c;
 	tab[1] = '\0';
 	new_case = ft_lstnew(tab, size);
