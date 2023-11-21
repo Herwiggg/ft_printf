@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.c                                           :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: almichel <	almichel@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 18:33:15 by almichel          #+#    #+#             */
-/*   Updated: 2023/11/16 18:36:01 by almichel         ###   ########.fr       */
+/*   Updated: 2023/11/21 19:40:05 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
 void	ft_write_tab(char *tab)
 {
@@ -24,27 +24,29 @@ void	ft_write_tab(char *tab)
 	}
 	free(tab);
 }
+
 int	ft_stock_char(char c, t_list **list, int *error)
 {
 	char	*tab;
 	int		size;
-	t_list *new_case;
+	t_list	*new_case;
 
 	tab = malloc(2 * sizeof(char));
-	if(!tab)
+	if (!tab)
 		return (*error);
 	size = 1;
 	tab[0] = c;
 	tab[1] = '\0';
-	new_case = ft_lstnew(tab, size);
+	new_case = ft_lstnew_two(tab, size);
 	ft_lstadd_back(list, new_case);
 	return (1);
 }
-int	ft_search_arg(char c,t_list **list, va_list arg, int *error)
+
+int	ft_search_arg(char c, t_list **list, va_list arg, int *error)
 {
 	int	size;
 
-	size = 0; 
+	size = 0;
 	if (c == 'c')
 		size = ft_c(va_arg(arg, int), list, error);
 	else if (c == 's')
@@ -52,23 +54,22 @@ int	ft_search_arg(char c,t_list **list, va_list arg, int *error)
 	else if (c == 'p')
 		size = ft_p(va_arg(arg, int), list, error, 10);
 	else if (c == 'd' || c == 'i')
-		size = ft_itoa(va_arg(arg, int), list, error, 10);
+		size = ft_itoa_n(va_arg(arg, int), list, error, 10);
 	else if (c == 'u')
 		size = ft_u(va_arg(arg, unsigned int), list, error, 10);
 	else if (c == 'x')
-		size = ft_itoa(va_arg(arg, unsigned int), list, error, 16);
+		size = ft_itoa_n(va_arg(arg, unsigned int), list, error, 16);
 	else if (c == 'X')
 		size = ft_itoa_maj(va_arg(arg, unsigned int), list, error, 16);
 	else if (c == '%')
 		size = ft_c('%', list, error);
 	return (size);
-
-
 }
+
 int	ft_prog_printf(const char *str, t_list **list, va_list arg, int *error)
 {
-	int		i;
-	int		size;
+	int	i;
+	int	size;
 
 	i = 0;
 	size = 0;
@@ -88,12 +89,11 @@ int	ft_prog_printf(const char *str, t_list **list, va_list arg, int *error)
 
 int	ft_printf(const char *str, ...)
 {
-	int size;
+	int		size;
 	va_list	va;
 	int		error;
-	int	i;
-	char *tab;
-	t_list *list;
+	char	*tab;
+	t_list	*list;
 
 	list = NULL;
 	error = -1;
@@ -101,16 +101,18 @@ int	ft_printf(const char *str, ...)
 	size = ft_prog_printf(str, &list, va, &error);
 	va_end(va);
 	tab = ft_list_to_tab(&list);
-	i = ft_strlen(tab);
-	if (size == i)
-		{
-			ft_write_tab(tab);
-			return (i);
-		}
-		return(-1);
+	ft_strlen(tab);
+	printf("size %d\n", size);
+	printf("i %d\n", ft_strlen(tab));
+	if (size == ft_strlen(tab))
+	{
+		ft_write_tab(tab);
+		return (ft_strlen(tab));
+	}
+	return (-1);
 }
-int main ()
+int main()
 {
 	int i = 1;
-	ft_printf("test %i", i);
+	ft_printf("wduwhd %d", i);
 }

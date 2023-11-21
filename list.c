@@ -6,13 +6,13 @@
 /*   By: almichel <	almichel@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 16:23:33 by almichel          #+#    #+#             */
-/*   Updated: 2023/11/16 19:08:24 by almichel         ###   ########.fr       */
+/*   Updated: 2023/11/21 19:07:49 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
-t_list	*ft_lstnew(char *str, int size)
+t_list	*ft_lstnew_two(char *str, int size)
 {
 	t_list	*list;
 
@@ -39,7 +39,8 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 		last = last->next;
 	last->next = new;
 }
- void	ft_free_list(t_list **list)
+
+void	ft_free_list(t_list **list)
 {
 	t_list	*head;
 	t_list	*temp;
@@ -53,6 +54,7 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 		free(temp);
 	}
 }
+
 char	*ft_strcat(char *dest, char *src)
 {
 	int	len;
@@ -71,11 +73,12 @@ char	*ft_strcat(char *dest, char *src)
 	dest[len] = '\0';
 	return (dest);
 }
-char *ft_list_to_tab(t_list **list)
+
+char	*ft_list_to_tab(t_list **list)
 {
-	t_list *head;
-	char *tab;
-	int	totalsize;
+	t_list	*head;
+	char	*tab;
+	int		totalsize;
 
 	totalsize = 0;
 	head = *list;
@@ -84,7 +87,7 @@ char *ft_list_to_tab(t_list **list)
 		totalsize = totalsize + head->size;
 		head = head->next;
 	}
-	tab = malloc((totalsize + 1)* sizeof(char));
+	tab = malloc((totalsize + 1) * sizeof(char));
 	if (!tab)
 		return (NULL);
 	head = *list;
@@ -96,4 +99,3 @@ char *ft_list_to_tab(t_list **list)
 	ft_free_list(list);
 	return (tab);
 }
-

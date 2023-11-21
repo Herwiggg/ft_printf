@@ -6,11 +6,21 @@
 /*   By: almichel <	almichel@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 17:27:32 by almichel          #+#    #+#             */
-/*   Updated: 2023/11/17 17:10:03 by almichel         ###   ########.fr       */
+/*   Updated: 2023/11/21 19:33:23 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
+
+int	ft_strlen(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
 
 int	ft_stock_string(char *str, t_list **list, int *error)
 {
@@ -30,7 +40,7 @@ int	ft_stock_string(char *str, t_list **list, int *error)
 		i++;
 	}
 	tab[i] = '\0';
-	new_case = ft_lstnew(tab, size);
+	new_case = ft_lstnew_two(tab, size);
 	ft_lstadd_back(list, new_case);
 	return (ft_strlen(str));
 }
@@ -38,15 +48,14 @@ int	ft_stock_string(char *str, t_list **list, int *error)
 int	ft_c(char c, t_list **list, int *error)
 {
 	char	*tab;
-	int		size;
-	t_list *new_case;
+	t_list	*new_case;
 
 	tab = malloc(2 * sizeof(char));
 	if (!tab)
 		return (*error);
 	tab[0] = c;
 	tab[1] = '\0';
-	new_case = ft_lstnew(tab, size);
+	new_case = ft_lstnew_two(tab, 2);
 	ft_lstadd_back(list, new_case);
 	return (1);
 }

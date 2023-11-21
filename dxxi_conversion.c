@@ -1,26 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dxiu_conversion.c                                  :+:      :+:    :+:   */
+/*   dxxi_conversion.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: almichel <	almichel@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 16:25:21 by almichel          #+#    #+#             */
-/*   Updated: 2023/11/16 20:00:20 by almichel         ###   ########.fr       */
+/*   Updated: 2023/11/21 19:34:50 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
-
-int	ft_strlen(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
+#include "ft_printf.h"
 
 int	ft_count(int n, int base)
 {
@@ -45,34 +35,22 @@ int	ft_count(int n, int base)
 	return (count);
 }
 
-int	ft_itoa(int n, t_list **list, int *error, int base)
+int	ft_itoa_n(int n, t_list **list, int *error, int base)
 {
-	char				*result;
-	int					count;
-	long int			nb;
-	int					i;
-	t_list 				*new_case;
-	
+	char		*result;
+	int			count;
+	long int	nb;
+	int			i;
+	t_list		*new_case;
+
 	nb = n;
 	count = ft_count(n, base);
 	i = count;
-	result = malloc ((count + 1) * sizeof(char));
+	result = malloc((count + 1) * sizeof(char));
 	if (!result)
 		return (*error);
-	result[count--] = '\0';
-	if (nb == 0)
-		result[0] = '0';
-	if (nb < 0)
-	{
-		nb = -nb;
-		result[0] = '-';
-	}
-	while (nb > 0)
-	{
-		result[count--] = nb % base + 48;
-		nb = nb / base;
-	}
-	new_case = ft_lstnew(result, i);
+	result = ft_tab_itoa(nb, result, count, base);
+	new_case = ft_lstnew_two(result, i);
 	ft_lstadd_back(list, new_case);
 	return (i);
 }
@@ -93,18 +71,27 @@ char	*ft_min_to_maj(char *str)
 
 int	ft_itoa_maj(int n, t_list **list, int *error, int base)
 {
-	char				*result;
-	int					count;
-	long int			nb;
-	int					i;
-	t_list 				*new_case;
-	
+	char		*result;
+	int			count;
+	long int	nb;
+	int			i;
+	t_list		*new_case;
+
 	nb = n;
 	count = ft_count(n, base);
 	i = count;
-	result = malloc ((count + 1) * sizeof(char));
+	result = malloc((count + 1) * sizeof(char));
 	if (!result)
 		return (*error);
+	result = ft_tab_itoa(nb, result, count, base);
+	result = ft_min_to_maj(result);
+	new_case = ft_lstnew_two(result, i);
+	ft_lstadd_back(list, new_case);
+	return (i);
+}
+
+char	*ft_tab_itoa(long int nb, char *result, int count, int base)
+{
 	result[count--] = '\0';
 	if (nb == 0)
 		result[0] = '0';
@@ -118,9 +105,5 @@ int	ft_itoa_maj(int n, t_list **list, int *error, int base)
 		result[count--] = nb % base + 48;
 		nb = nb / base;
 	}
-	result = ft_min_to_maj(result);
-	new_case = ft_lstnew(result, i);
-	ft_lstadd_back(list, new_case);
-	return (i);
+	return (result);
 }
-
