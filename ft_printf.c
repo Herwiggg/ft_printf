@@ -6,22 +6,15 @@
 /*   By: almichel <	almichel@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 18:33:15 by almichel          #+#    #+#             */
-/*   Updated: 2023/11/21 19:40:05 by almichel         ###   ########.fr       */
+/*   Updated: 2023/11/22 19:07:39 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_write_tab(char *tab)
+void	ft_write_tab(char *tab, int size)
 {
-	int	i;
-
-	i = 0;
-	while (tab[i])
-	{
-		write(1, &tab[i], 1);
-		i++;
-	}
+	write(1, tab, size);
 	free(tab);
 }
 
@@ -52,7 +45,7 @@ int	ft_search_arg(char c, t_list **list, va_list arg, int *error)
 	else if (c == 's')
 		size = ft_stock_string(va_arg(arg, char *), list, error);
 	else if (c == 'p')
-		size = ft_p(va_arg(arg, int), list, error, 10);
+		size = ft_p(va_arg(arg, void *), list, error, 16);
 	else if (c == 'd' || c == 'i')
 		size = ft_itoa_n(va_arg(arg, int), list, error, 10);
 	else if (c == 'u')
@@ -102,17 +95,11 @@ int	ft_printf(const char *str, ...)
 	va_end(va);
 	tab = ft_list_to_tab(&list);
 	ft_strlen(tab);
-	printf("size %d\n", size);
-	printf("i %d\n", ft_strlen(tab));
 	if (size == ft_strlen(tab))
 	{
-		ft_write_tab(tab);
-		return (ft_strlen(tab));
+		ft_write_tab(tab, size);
+		return (size);
 	}
-	return (-1);
-}
-int main()
-{
-	int i = 1;
-	ft_printf("wduwhd %d", i);
+	ft_write_tab(tab, size);
+	return (size);
 }

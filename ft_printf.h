@@ -6,7 +6,7 @@
 /*   By: almichel <	almichel@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 16:34:33 by almichel          #+#    #+#             */
-/*   Updated: 2023/11/21 19:38:23 by almichel         ###   ########.fr       */
+/*   Updated: 2023/11/22 20:00:56 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,12 @@ void				ft_lstadd_back(t_list **lst, t_list *new);
 void				ft_free_list(t_list **list);
 char				*ft_strcat(char *dest, char *src);
 char				*ft_list_to_tab(t_list **list);
-void				ft_write_tab(char *tab);
-int					ft_p(unsigned n, t_list **list, int *error, int base);
+void				ft_write_tab(char *tab, int size);
+int					ft_p(void *ptr, t_list **list, int *error, int base);
 int					ft_u(unsigned n, t_list **list, int *error, int base);
 char				*ft_tab_itoa(long int nb, char *result,
 						int count, int base);
+int					ft_count_p(unsigned long n, int base);
+char				*ft_strdup(char *s);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: almichel <	almichel@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 16:23:33 by almichel          #+#    #+#             */
-/*   Updated: 2023/11/21 19:07:49 by almichel         ###   ########.fr       */
+/*   Updated: 2023/11/22 20:01:17 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ char	*ft_list_to_tab(t_list **list)
 	tab = malloc((totalsize + 1) * sizeof(char));
 	if (!tab)
 		return (NULL);
+	tab[0] = '\0';
 	head = *list;
 	while (head)
 	{

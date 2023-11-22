@@ -6,7 +6,7 @@
 /*   By: almichel <	almichel@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 16:25:21 by almichel          #+#    #+#             */
-/*   Updated: 2023/11/21 19:34:50 by almichel         ###   ########.fr       */
+/*   Updated: 2023/11/22 16:13:24 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ char	*ft_tab_itoa(long int nb, char *result, int count, int base)
 	}
 	while (nb > 0)
 	{
-		result[count--] = nb % base + 48;
+		result[count--] = "0123456789abcdef"[nb % base];
 		nb = nb / base;
 	}
 	return (result);
