@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   up_conversion.c                                    :+:      :+:    :+:   */
+/*   upid_conversion.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: almichel <	almichel@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 17:27:32 by almichel          #+#    #+#             */
-/*   Updated: 2023/11/22 18:07:02 by almichel         ###   ########.fr       */
+/*   Updated: 2023/11/23 15:34:22 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	ft_count_p(unsigned long n, int base)
 	}
 	return (count);
 }
+
 int	ft_count_di(int nb, int base)
 {
 	int	count;

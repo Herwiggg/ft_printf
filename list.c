@@ -6,7 +6,7 @@
 /*   By: almichel <	almichel@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 16:23:33 by almichel          #+#    #+#             */
-/*   Updated: 2023/11/22 20:01:17 by almichel         ###   ########.fr       */
+/*   Updated: 2023/11/23 17:16:18 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,23 +55,16 @@ void	ft_free_list(t_list **list)
 	}
 }
 
-char	*ft_strcat(char *dest, char *src)
+void	ft_strcpy(char *dest, char *src, int size)
 {
-	int	len;
 	int	i;
 
 	i = 0;
-	len = 0;
-	while (dest[len])
-		len++;
-	while (src[i])
+	while (i < size)
 	{
-		dest[len] = src[i];
-		len++;
+		dest[i] = src[i];
 		i++;
 	}
-	dest[len] = '\0';
-	return (dest);
 }
 
 char	*ft_list_to_tab(t_list **list)
@@ -79,6 +72,7 @@ char	*ft_list_to_tab(t_list **list)
 	t_list	*head;
 	char	*tab;
 	int		totalsize;
+	char	*temp;
 
 	totalsize = 0;
 	head = *list;
@@ -92,11 +86,15 @@ char	*ft_list_to_tab(t_list **list)
 		return (NULL);
 	tab[0] = '\0';
 	head = *list;
+	temp = tab;
 	while (head)
 	{
-		tab = ft_strcat(tab, head->content);
+		ft_strcpy(tab, head->content, head->size);
+		tab = tab + head->size;
 		head = head->next;
 	}
+	tab = temp;
+	tab[totalsize] = '\0';
 	ft_free_list(list);
 	return (tab);
 }

@@ -6,7 +6,7 @@
 /*   By: almichel <	almichel@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 16:34:33 by almichel          #+#    #+#             */
-/*   Updated: 2023/11/22 20:00:56 by almichel         ###   ########.fr       */
+/*   Updated: 2023/11/23 16:30:04 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int					ft_prog_printf(const char *str, t_list **list, va_list arg,
 int					ft_printf(const char *str, ...);
 void				ft_lstadd_back(t_list **lst, t_list *new);
 void				ft_free_list(t_list **list);
-char				*ft_strcat(char *dest, char *src);
+void				ft_strcpy(char *dest, char *src, int size);
 char				*ft_list_to_tab(t_list **list);
 void				ft_write_tab(char *tab, int size);
 int					ft_p(void *ptr, t_list **list, int *error, int base);
