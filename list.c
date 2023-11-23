@@ -6,7 +6,7 @@
 /*   By: almichel <	almichel@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 16:23:33 by almichel          #+#    #+#             */
-/*   Updated: 2023/11/23 17:16:18 by almichel         ###   ########.fr       */
+/*   Updated: 2023/11/23 19:02:31 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,9 @@ char	*ft_list_to_tab(t_list **list)
 	int		totalsize;
 	char	*temp;
 
-	totalsize = 0;
 	head = *list;
-	while (head)
-	{
-		totalsize = totalsize + head->size;
-		head = head->next;
-	}
+	totalsize = 0;
+	totalsize = ft_total_size_plus(head, totalsize);
 	tab = malloc((totalsize + 1) * sizeof(char));
 	if (!tab)
 		return (NULL);

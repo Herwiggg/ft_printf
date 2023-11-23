@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dxxi_conversion.c                                  :+:      :+:    :+:   */
+/*   xx_conversion.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: almichel <	almichel@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 16:25:21 by almichel          #+#    #+#             */
-/*   Updated: 2023/11/22 16:13:24 by almichel         ###   ########.fr       */
+/*   Updated: 2023/11/23 18:32:59 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int	ft_count_x(unsigned int nb, int base)
 	}
 	return (count);
 }
-
 
 int	ft_itoa_n(unsigned int n, t_list **list, int *error, int base)
 {

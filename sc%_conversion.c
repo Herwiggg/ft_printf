@@ -6,7 +6,7 @@
 /*   By: almichel <	almichel@student.42.fr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 17:27:32 by almichel          #+#    #+#             */
-/*   Updated: 2023/11/22 19:24:54 by almichel         ###   ########.fr       */
+/*   Updated: 2023/11/23 17:40:11 by almichel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	ft_c(char c, t_list **list, int *error)
 		return (*error);
 	tab[0] = c;
 	tab[1] = '\0';
-	new_case = ft_lstnew_two(tab, 2);
+	new_case = ft_lstnew_two(tab, 1);
 	ft_lstadd_back(list, new_case);
 	return (1);
 }

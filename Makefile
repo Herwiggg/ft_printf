@@ -4,7 +4,8 @@ SOURCES = ft_printf.c \
           list.c \
           xx_conversion.c \
           sc%_conversion.c \
-          upid_conversion.c
+          upid_conversion.c \
+            plus.c
 
 OBJECTS = $(SOURCES:.c=.o)
 
