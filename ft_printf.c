@@ -47,7 +47,7 @@ int	ft_search_arg(char c, t_list **list, va_list arg, int *error)
 	else if (c == 'p')
 		size = ft_p(va_arg(arg, void *), list, error, 16);
 	else if (c == 'd' || c == 'i')
-		size = ft_itoa_n(va_arg(arg, int), list, error, 10);
+		size = ft_itoa_di(va_arg(arg, int), list, error, 10);
 	else if (c == 'u')
 		size = ft_u(va_arg(arg, unsigned int), list, error, 10);
 	else if (c == 'x')

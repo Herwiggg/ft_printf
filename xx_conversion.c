@@ -12,30 +12,26 @@
 
 #include "ft_printf.h"
 
-int	ft_count(int n, int base)
+int	ft_count_x(unsigned int nb, int base)
 {
 	int	count;
 
 	count = 0;
-	if (n < 0)
-	{
-		n = -n;
-		count++;
-	}
-	if (n == 0)
+	if (nb == 0)
 	{
 		count = 1;
 		return (count);
 	}
-	while (n)
+	while (nb)
 	{
-		n = n / base;
+		nb = nb / base;
 		count++;
 	}
 	return (count);
 }
 
-int	ft_itoa_n(int n, t_list **list, int *error, int base)
+
+int	ft_itoa_n(unsigned int n, t_list **list, int *error, int base)
 {
 	char		*result;
 	int			count;
@@ -44,7 +40,7 @@ int	ft_itoa_n(int n, t_list **list, int *error, int base)
 	t_list		*new_case;
 
 	nb = n;
-	count = ft_count(n, base);
+	count = ft_count_x(nb, base);
 	i = count;
 	result = malloc((count + 1) * sizeof(char));
 	if (!result)
@@ -69,7 +65,7 @@ char	*ft_min_to_maj(char *str)
 	return (str);
 }
 
-int	ft_itoa_maj(int n, t_list **list, int *error, int base)
+int	ft_itoa_maj(unsigned int n, t_list **list, int *error, int base)
 {
 	char		*result;
 	int			count;
@@ -78,7 +74,7 @@ int	ft_itoa_maj(int n, t_list **list, int *error, int base)
 	t_list		*new_case;
 
 	nb = n;
-	count = ft_count(n, base);
+	count = ft_count_x(n, base);
 	i = count;
 	result = malloc((count + 1) * sizeof(char));
 	if (!result)

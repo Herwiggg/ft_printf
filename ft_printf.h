@@ -27,10 +27,10 @@ typedef struct s_list
 
 int					ft_strlen(char *str);
 int					ft_c(char c, t_list **list, int *error);
-int					ft_count(int n, int base);
-int					ft_itoa_n(int n, t_list **list, int *error, int base);
+int					ft_count_x(unsigned int nb, int base);
+int					ft_itoa_n(unsigned int n, t_list **list, int *error, int base);
 char				*ft_min_to_maj(char *str);
-int					ft_itoa_maj(int n, t_list **list, int *error, int base);
+int					ft_itoa_maj(unsigned int n, t_list **list, int *error, int base);
 int					ft_stock_string(char *str, t_list **list, int *error);
 
 t_list				*ft_lstnew_two(char *str, int size);
@@ -51,5 +51,7 @@ char				*ft_tab_itoa(long int nb, char *result,
 						int count, int base);
 int					ft_count_p(unsigned long n, int base);
 char				*ft_strdup(char *s);
+int					ft_itoa_di(int n, t_list **list, int *error, int base);
+int					ft_count_di(int nb, int base);
 
 #endif

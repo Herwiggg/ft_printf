@@ -2,9 +2,9 @@ NAME = libftprintf.a
 
 SOURCES = ft_printf.c \
           list.c \
-          dxxi_conversion.c \
+          xx_conversion.c \
           sc%_conversion.c \
-          up_conversion.c
+          upid_conversion.c
 
 OBJECTS = $(SOURCES:.c=.o)
 

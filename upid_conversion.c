@@ -29,7 +29,48 @@ int	ft_count_p(unsigned long n, int base)
 	}
 	return (count);
 }
+int	ft_count_di(int nb, int base)
+{
+	int	count;
 
+	count = 0;
+	if (nb < 0)
+	{
+		nb = -nb;
+		count++;
+	}
+	if (nb == 0)
+	{
+		count = 1;
+		return (count);
+	}
+	while (nb)
+	{
+		nb = nb / base;
+		count++;
+	}
+		return (count);
+}
+
+int	ft_itoa_di(int n, t_list **list, int *error, int base)
+{
+	char		*result;
+	int			count;
+	long int	nb;
+	int			i;
+	t_list		*new_case;
+
+	nb = n;
+	count = ft_count_di(nb, base);
+	i = count;
+	result = malloc((count + 1) * sizeof(char));
+	if (!result)
+		return (*error);
+	result = ft_tab_itoa(nb, result, count, base);
+	new_case = ft_lstnew_two(result, i);
+	ft_lstadd_back(list, new_case);
+	return (i);
+}
 int	ft_u(unsigned n, t_list **list, int *error, int base)
 {
 	char		*result;
@@ -64,7 +105,14 @@ int	ft_p(void *ptr, t_list **list, int *error, int base)
 	unsigned long	n;
 	t_list			*new_case;
 	int				i;
-
+	
+	if (!ptr)
+	{
+		result = ft_strdup("(nil)");
+		new_case = ft_lstnew_two(result, 5);
+		ft_lstadd_back(list, new_case);
+		return (5);
+	}
 	n = (unsigned long)ptr;
 	count = ft_count_p(n, base) + 2;
 	result = malloc((count + 1) * sizeof(char));
