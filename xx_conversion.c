@@ -43,7 +43,7 @@ int	ft_itoa_n(unsigned int n, t_list **list, int *error, int base)
 	i = count;
 	result = malloc((count + 1) * sizeof(char));
 	if (!result)
-		return (*error);
+		return (*error == 0);
 	result = ft_tab_itoa(nb, result, count, base);
 	new_case = ft_lstnew_two(result, i);
 	ft_lstadd_back(list, new_case);
@@ -77,7 +77,7 @@ int	ft_itoa_maj(unsigned int n, t_list **list, int *error, int base)
 	i = count;
 	result = malloc((count + 1) * sizeof(char));
 	if (!result)
-		return (*error);
+		return (*error == 0);
 	result = ft_tab_itoa(nb, result, count, base);
 	result = ft_min_to_maj(result);
 	new_case = ft_lstnew_two(result, i);

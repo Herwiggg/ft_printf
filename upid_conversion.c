@@ -66,7 +66,7 @@ int	ft_itoa_di(int n, t_list **list, int *error, int base)
 	i = count;
 	result = malloc((count + 1) * sizeof(char));
 	if (!result)
-		return (*error);
+		return (*error = 0);
 	result = ft_tab_itoa(nb, result, count, base);
 	new_case = ft_lstnew_two(result, i);
 	ft_lstadd_back(list, new_case);
@@ -86,7 +86,7 @@ int	ft_u(unsigned n, t_list **list, int *error, int base)
 	i = count;
 	result = malloc((count + 1) * sizeof(char));
 	if (!result)
-		return (*error);
+		return (*error = 0);
 	result[count--] = '\0';
 	if (nb == 0)
 		result[0] = '0';
@@ -118,10 +118,10 @@ int	ft_p(void *ptr, t_list **list, int *error, int base)
 	n = (unsigned long)ptr;
 	count = ft_count_p(n, base) + 2;
 	result = malloc((count + 1) * sizeof(char));
+	if (!result)
+		return (*error == 0);
 	i = count;
 	result[count--] = '\0';
-	if (!result)
-		return (*error);
 	result = ft_p_plus(result, base, n, count);
 	new_case = ft_lstnew_two(result, i);
 	ft_lstadd_back(list, new_case);

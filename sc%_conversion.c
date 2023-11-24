@@ -58,7 +58,7 @@ int	ft_stock_string(char *str, t_list **list, int *error)
 	i = 0;
 	tab = malloc((ft_strlen(str) + 1) * sizeof(char));
 	if (!tab)
-		return (*error);
+		return (*error = 0);
 	while (str[i])
 	{
 		tab[i] = str[i];

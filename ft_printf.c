@@ -26,7 +26,7 @@ int	ft_stock_char(char c, t_list **list, int *error)
 
 	tab = malloc(2 * sizeof(char));
 	if (!tab)
-		return (*error);
+		return (*error == 0);
 	size = 1;
 	tab[0] = c;
 	tab[1] = '\0';
@@ -66,7 +66,7 @@ int	ft_prog_printf(const char *str, t_list **list, va_list arg, int *error)
 
 	i = 0;
 	size = 0;
-	while (str[i])
+	while (str[i] && *error == -1)
 	{
 		if (str[i] == '%')
 		{
@@ -94,12 +94,11 @@ int	ft_printf(const char *str, ...)
 	size = ft_prog_printf(str, &list, va, &error);
 	va_end(va);
 	tab = ft_list_to_tab(&list);
-	ft_strlen(tab);
-	if (size == ft_strlen(tab))
-	{
-		ft_write_tab(tab, size);
-		return (size);
-	}
+	if (error == 1)
+		{
+			size = -1;
+			return (size);
+		}
 	ft_write_tab(tab, size);
 	return (size);
 }
